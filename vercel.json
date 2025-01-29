@@ -13,18 +13,18 @@
         }
       }
     ],
-    "routes": [
+    "rewrites": [
       {
-        "src": "/styles/(.*)",
-        "dest": "/public/styles/$1"
+        "source": "/styles/:path*",
+        "destination": "/public/styles/:path*"
       },
       {
-        "src": "/images/(.*)",
-        "dest": "/public/images/$1"
+        "source": "/images/:path*",
+        "destination": "/public/images/:path*"
       },
       {
-        "src": "/(.*)",
-        "dest": "/index.js"
+        "source": "/(.*)",
+        "destination": "/index.js"
       }
     ],
     "headers": [
