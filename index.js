@@ -3,17 +3,17 @@ import axios from "axios"
 import { fileURLToPath } from "url"
 import { dirname, join } from "path"
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
-const app = express()
-const port = process.env.PORT || 3000
+const app = express();
+const port = process.env.PORT || 3000;
 
-// Set the view engine and views directory
-app.set("view engine", "ejs")
-app.set("views", join(__dirname, "views"))
 
-app.use(express.static("public"))
+app.set("view engine", "ejs");
+app.set("views", join(__dirname, "views"));
+
+app.use(express.static("public"));
 
 app.get("/", async (req, res) => {
   try {
@@ -28,12 +28,7 @@ app.get("/", async (req, res) => {
       user: result.data.username || "Anonymous",
     })
   } catch (error) {
-    console.error("Error details:", {
-      message: error.message,
-      response: error.response?.data || "No response data",
-      status: error.response?.status || "No status code",
-    })
-
+    console.error("Error details:", error);
     res.render("index.ejs", {
       secret: "Error loading secret. Please try again later.",
       user: "System",
