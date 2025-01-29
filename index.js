@@ -1,8 +1,17 @@
 import express from "express"
 import axios from "axios"
+import { fileURLToPath } from "url"
+import { dirname, join } from "path"
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const app = express()
-const port = 3000
+const port = process.env.PORT || 3000
+
+// Set the view engine and views directory
+app.set("view engine", "ejs")
+app.set("views", join(__dirname, "views"))
 
 app.use(express.static("public"))
 
@@ -10,7 +19,6 @@ app.get("/", async (req, res) => {
   try {
     const result = await axios.get("https://secrets-api.appbrewery.com/random")
 
-    // Check if result.data exists before accessing its properties
     if (!result.data) {
       throw new Error("No data received from API")
     }
