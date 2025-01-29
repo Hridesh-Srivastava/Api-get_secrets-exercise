@@ -5,7 +5,7 @@
         "src": "index.js",
         "use": "@vercel/node",
         "config": {
-          "includeFiles": ["views/**", "public/**", "node_modules/**"]
+          "includeFiles": ["views/**", "public/**"]
         }
       }
     ],
@@ -13,6 +13,10 @@
       {
         "src": "/styles/(.*)",
         "dest": "/public/styles/$1"
+      },
+      {
+        "src": "/images/(.*)",
+        "dest": "/public/images/$1"
       },
       {
         "src": "/(.*)",
